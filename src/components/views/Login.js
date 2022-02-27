@@ -39,6 +39,7 @@ const Login = props => {
   const history = useHistory();
   const [name, setName] = useState(null);
   const [username, setUsername] = useState(null);
+  // const [password, setPassword] = useState(null);
 
   const doLogin = async () => {
     try {
@@ -68,7 +69,7 @@ const Login = props => {
             onChange={un => setUsername(un)}
           />
           <FormField
-            label="Name"
+            label="Password"
             value={name}
             onChange={n => setName(n)}
           />
@@ -78,7 +79,7 @@ const Login = props => {
               width="100%"
               onClick={() => doLogin()}
             >
-              Login
+              Register
             </Button>
           </div>
         </div>
