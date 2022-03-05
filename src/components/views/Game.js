@@ -12,6 +12,7 @@ const Player = ({user}) => (
     <div className="player username">{user.username}</div>
     <div className="player name">{user.name}</div>
     <div className="player id">id: {user.id}</div>
+    
   </div>
 );
 
@@ -94,9 +95,9 @@ const Game = () => {
 
   return (
     <BaseContainer className="game container">
-      <h2>Happy Coding!</h2>
+      <h2>Users</h2>
       <p className="game paragraph">
-        Get all users from secure endpoint:
+        Select profile to view!
       </p>
       {content}
     </BaseContainer>

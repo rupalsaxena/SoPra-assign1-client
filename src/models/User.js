@@ -1,7 +1,6 @@
 /**
  * User model
  */
-// name is actually password here! Issue to be fixed!
 class User {
   constructor(data = {}) {
     this.id = null;
