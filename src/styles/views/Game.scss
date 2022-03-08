@@ -30,9 +30,21 @@
   & p,h2 {
     margin: 0.5em 0;
   }
+  &.logout-container {
+    margin-top: 1em;
+    font-size: large;
+  }
+  &.username-button-container {
+    margin-top: 0.5em;
+    font-size:medium;
+    text-transform:none;
+    background-color:black;
+    color:white;
+
+  }
 }
 
-.player {
+/*.player {
   &.container {
     margin: 0.5em 0;
     width: 40em;
@@ -56,4 +68,4 @@
     font-family: $fontMono;
     font-weight: 300;
   }
-}
+}*/

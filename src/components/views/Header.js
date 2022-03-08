@@ -18,6 +18,11 @@ import "styles/views/Header.scss";
     <ReactLogo width="60px" height="60px"/>
 </div>*/
 
+// add this when u wanna add users and user profile
+/*<Nav>
+    <Nav.Link href="/users">Users</Nav.Link>
+    <Nav.Link href="/profile">Profile</Nav.Link>
+</Nav>*/
 const Header = props => (
     <Navbar bg="primary" variant="dark">
         <Container>
@@ -26,10 +31,6 @@ const Header = props => (
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse>
-                <Nav>
-                <Nav.Link href="/users">Users</Nav.Link>
-                <Nav.Link href="/profile">Profile</Nav.Link>
-                </Nav>
                 <Nav className="justify-content-end" style={{ width: "100%" }}>
                     <Nav.Link href="/login">Login</Nav.Link>
                     <Nav.Link href="/register">Register</Nav.Link>

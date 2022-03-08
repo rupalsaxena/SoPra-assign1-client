@@ -4,26 +4,12 @@ import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import "styles/views/Game.scss";
-
-const Player = ({user}) => (
-  <div className="player container">
-    <div className="player username">{user.username}</div>
-    <div className="player name">{user.name}</div>
-    <div className="player id">id: {user.id}</div>
-    
-  </div>
-);
-
-Player.propTypes = {
-  user: PropTypes.object
-};
 
 const Game = () => {
   // use react-router-dom's hook to access the history
   const history = useHistory();
-
   // define a state variable (using the state hook).
   // if this variable changes, the component will re-render, but the variable will
   // keep its value throughout render cycles.
@@ -35,6 +21,23 @@ const Game = () => {
     localStorage.removeItem('token');
     history.push('/login');
   }
+
+  function userProfile (id) {
+    let push_to = '/users/' + String(id);
+    history.push(push_to);
+  }
+
+  const Player = ({user}) => (
+    <div className="player container">
+      <Button
+      width="500px"
+      onClick={() => userProfile(user.id)}
+      className = "game username-button-container"
+      >
+        {user.username}
+      </Button>
+    </div>
+  );
 
   // the effect hook can be used to react to change in your component.
   // in this case, the effect hook is only run once, the first time the component is mounted
@@ -78,14 +81,13 @@ const Game = () => {
   if (users) {
     content = (
       <div className="game">
-        <ul className="game user-list">
           {users.map(user => (
             <Player user={user} key={user.id}/>
           ))}
-        </ul>
         <Button
           width="100%"
           onClick={() => logout()}
+          className = "game logout-container"
         >
           Logout
         </Button>

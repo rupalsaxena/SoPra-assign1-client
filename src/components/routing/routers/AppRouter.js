@@ -35,7 +35,8 @@ const AppRouter = () => {
         </Route>
         <Route exact path="/users" component={UsersList}>
         </Route>
-        <Route exact path="/users/:user_id" component={UserProfile}>
+        <Route exact path="/users/:id">
+          <UserProfile/>
         </Route>
         <Route exact path="/">
           <Redirect to="/game"/>
