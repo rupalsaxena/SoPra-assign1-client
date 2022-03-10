@@ -37,7 +37,6 @@ FormField.propTypes = {
 
 const Login = props => {
   const history = useHistory();
-  //const [name, setName] = useState(null);
   const [password, setPassword] = useState(null);
   const [username, setUsername] = useState(null);
 
@@ -50,6 +49,7 @@ const Login = props => {
       const user = new User(response.data);
 
       // Store the token into the local storage.
+      localStorage.setItem('id', user.id);
       localStorage.setItem('token', user.token);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter

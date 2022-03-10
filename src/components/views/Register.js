@@ -51,12 +51,13 @@ const Register = props => {
             const user = new User(response.data);
 
             // Store the token into the local storage.
+            localStorage.setItem('id', user.id)
             localStorage.setItem('token', user.token);
 
             // Login successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/game`);
         } catch (error) {
-            alert(`Something went wrong during the login: \n${handleError(error)}`);
+            alert(`Something went wrong during the register: \n${handleError(error)}`);
         }
     };
 

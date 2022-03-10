@@ -11,9 +11,21 @@ const UserProfile = () => {
   const history = useHistory();
   const [user, setUsers] = useState(null);
   const {id} = useParams();
+
   function goBack () {
     history.push('/game');
   }
+
+  function editpage(user) {
+    const push_to = '/edit/' + String(user.username) + 
+              '/' + String(user.status) + 
+              '/' + String(user.creation_date) + 
+              '/' + String(user.birthday) +
+              '/' + String(user.id);
+
+    history.push(push_to);
+  }
+
   useEffect(() => {
       // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
       async function fetchData() {
@@ -34,7 +46,7 @@ const UserProfile = () => {
         } catch (error) {
           console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
           console.error("Details:", error);
-          alert("Something went wrong while fetching the users! See the console for details.");
+          alert("Something went wrong while fetching the user details! See the console for details.");
         }
       }
   
@@ -43,7 +55,31 @@ const UserProfile = () => {
 
     let content = <Spinner/>;
 
-    if (user) {
+    if (user && localStorage.getItem("id") == user.id) {
+      content = (
+        <div className="userprofile text">
+          <div className="userprofile text"> username: {user.username} </div>
+          <div className="userprofile text"> online status: {user.status}</div>
+          <div className="userprofile text"> creation date: {user.creation_date} </div>
+          <div className="userprofile text"> birthday: {user.birthday} </div>
+          <Button
+            width="100%"
+            onClick={() => editpage(user)}
+            className = "userprofile button-container"
+            >
+            Edit
+          </Button>
+          <Button
+            width="100%"
+            onClick={() => goBack()}
+            className = "userprofile button-container"
+            >
+            Back
+        </Button>
+        </div>
+      );
+    }
+    else if (user) {
       content = (
         <div className="userprofile text">
           <div className="userprofile text"> username: {user.username} </div>
@@ -61,7 +97,6 @@ const UserProfile = () => {
       );
     }
 
-
   return (
       <BaseContainer className="userprofile container">
           <h2>User Profile</h2>
@@ -69,4 +104,6 @@ const UserProfile = () => {
       </BaseContainer>
   );
 };
+
+
 export default UserProfile;

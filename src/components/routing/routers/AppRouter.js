@@ -6,6 +6,7 @@ import Login from "components/views/Login";
 import Register from "components/views/Register";
 import UsersList from "../../views/UsersList";
 import UserProfile from "../../views/UserProfile";
+import EditProfile from "../../views/EditProfile";
 
 /**
  * Main router of your application.
@@ -37,6 +38,9 @@ const AppRouter = () => {
         </Route>
         <Route exact path="/users/:id">
           <UserProfile/>
+        </Route>
+        <Route exact path="/edit/:current_username/:status/:creation_date/:current_birthday/:id">
+          <EditProfile/>
         </Route>
         <Route exact path="/">
           <Redirect to="/game"/>
