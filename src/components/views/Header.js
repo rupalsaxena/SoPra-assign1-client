@@ -1,5 +1,4 @@
 import React from "react";
-import {ReactLogo} from "components/ui/ReactLogo";
 import PropTypes from "prop-types";
 import {Container, Navbar, Nav } from "react-bootstrap";
 import "styles/views/Header.scss";

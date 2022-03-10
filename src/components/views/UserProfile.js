@@ -15,7 +15,7 @@ const UserProfile = () => {
     history.push('/game');
   }
 
-  function editpage(user) {
+  function editProfile(user) {
     const push_to = '/edit/' + String(user.username) + 
               '/' + String(user.status) + 
               '/' + String(user.creation_date) + 
@@ -54,7 +54,7 @@ const UserProfile = () => {
           <div className="userprofile text"> birthday: {user.birthday} </div>
           <Button
             width="100%"
-            onClick={() => editpage(user)}
+            onClick={() => editProfile(user)}
             className = "userprofile button-container"
             >
             Edit

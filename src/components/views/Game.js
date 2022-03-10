@@ -9,7 +9,16 @@ const Game = () => {
   const history = useHistory();
   const [users, setUsers] = useState(null);
 
-  const logout = () => {
+  async function logout(id) {
+    const request_to = '/logout/' + String(id)
+    try {
+      const res = await api.put(request_to)
+    } catch (error) {
+      console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+      console.error("Details:", error);
+      alert("Something went wrong while fetching the users! See the console for details.");
+    }
+    
     localStorage.removeItem('token');
     history.push('/login');
   }
@@ -58,7 +67,7 @@ const Game = () => {
           ))}
         <Button
           width="100%"
-          onClick={() => logout()}
+          onClick={() => logout(localStorage.getItem("id"))}
           className = "game logout-container"
         >
           Logout
