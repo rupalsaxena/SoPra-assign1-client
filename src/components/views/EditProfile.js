@@ -1,14 +1,10 @@
-//import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {Spinner} from 'components/ui/Spinner';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-//import "styles/views/UserProfile.scss";
 import "styles/views/EditProfile.scss";
 import { useState } from 'react';
-import UserProfile from './UserProfile';
 
 const EditProfile = () => {
     const history = useHistory();
@@ -40,7 +36,7 @@ const EditProfile = () => {
         history.push(push_to);
       }
 
-    let content = <Spinner/>;
+    let content;
     content = (
         <div className="editProfile text">
             <div className="editProfile text"> 
