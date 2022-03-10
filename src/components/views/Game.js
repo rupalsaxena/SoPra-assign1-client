@@ -69,7 +69,7 @@ const Game = () => {
 
   return (
     <BaseContainer className="game container">
-      <h2>Users</h2>
+      <h2>Users Overview</h2>
       <p className="game paragraph">
         Select profile to view!
       </p>

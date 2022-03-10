@@ -89,7 +89,7 @@ const UserProfile = () => {
 
   return (
       <BaseContainer className="userprofile container">
-          <h2>User Profile</h2>
+          <h2>About</h2>
           {content}
       </BaseContainer>
   );
