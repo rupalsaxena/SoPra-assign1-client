@@ -22,8 +22,8 @@ const EditProfile = () => {
         try {
             const request_to = '/users/' + String(id);
             const requestBody = JSON.stringify({username, birthday});
-            const response = await api.put(request_to, requestBody);
-            const push_to = '/users/' + String(response.data.id);
+            await api.put(request_to, requestBody);
+            const push_to = '/users/' + String(id);
             history.push(push_to);
 
         } catch (error) {
