@@ -1,30 +1,98 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import "styles/views/UserProfile.scss";
 
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
+const UserProfile = () => {
+  const history = useHistory();
+  const [user, setUsers] = useState(null);
+  const {id} = useParams();
 
-const UserProfile = props => {
+  function goBack () {
+    history.push('/game');
+  }
 
-    return (
-        <BaseContainer>
-            User Profile
-        </BaseContainer>
-    );
+  function editProfile(user) {
+    const push_to = '/edit/' + String(user.username) + 
+              '/' + String(user.status) + 
+              '/' + String(user.creation_date) + 
+              '/' + String(user.birthday) +
+              '/' + String(user.id);
+
+    history.push(push_to);
+  }
+
+  useEffect(() => {
+      async function fetchData() {
+        try {
+          const request_to = '/users/' + String(id)
+          const response = await api.get(request_to);
+
+          setUsers(response.data);
+
+        } catch (error) {
+          console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+          console.error("Details:", error);
+          alert("Something went wrong while fetching the user details! See the console for details.");
+        }
+      }
+  
+      fetchData();
+    }, [id]);
+
+    let content;
+
+    if (user && localStorage.getItem("id") == user.id) {
+      content = (
+        <div className="userprofile text">
+          <div className="userprofile text"> username: {user.username} </div>
+          <div className="userprofile text"> online status: {user.status}</div>
+          <div className="userprofile text"> creation date: {user.creation_date} </div>
+          <div className="userprofile text"> birthday: {user.birthday} </div>
+          <Button
+            width="100%"
+            onClick={() => editProfile(user)}
+            className = "userprofile button-container"
+            >
+            Edit
+          </Button>
+          <Button
+            width="100%"
+            onClick={() => goBack()}
+            className = "userprofile button-container"
+            >
+            Back
+        </Button>
+        </div>
+      );
+    }
+    else if (user) {
+      content = (
+        <div className="userprofile text">
+          <div className="userprofile text"> username: {user.username} </div>
+          <div className="userprofile text"> online status: {user.status}</div>
+          <div className="userprofile text"> creation date: {user.creation_date} </div>
+          <div className="userprofile text"> birthday: {user.birthday} </div>
+          <Button
+            width="100%"
+            onClick={() => goBack()}
+            className = "userprofile button-container"
+            >
+            Back
+          </Button>
+        </div>
+      );
+    }
+
+  return (
+      <BaseContainer className="userprofile container">
+          <h2>About</h2>
+          {content}
+      </BaseContainer>
+  );
 };
 
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
 export default UserProfile;
